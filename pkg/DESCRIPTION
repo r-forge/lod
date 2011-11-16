@@ -1,0 +1,20 @@
+Package: LOD.calculator
+Type: Package
+Title: Limit of Detection (LOD) Calculator with Binary Data
+Version: 1.0
+Date: 2010-09-10
+Author: Feiming Chen, Max Kuhn, Nick Huso
+Maintainer: Feiming Chen <feiming_chen@bd.com>
+Description: Limit of Detection(LOD) is a means of measuring an
+  instrument's level of sensitivity. The smaller the LOD, the higher the
+  sensitivity of the instrument to small quantities of an analyte (in
+  this case copies of bacteria DNA). An accurate estimate of LOD will
+  give a level of cut-off that separates positive and negative results
+  (in our case the detection or lack of detection for bacteria DNA). Our
+  goal is to consolidate various LOD models into a more powerful and
+  user-friendly web application featuring easier access, less manual
+  intervention, and more information in the form of warnings regarding
+  inadequacies of input data.
+License: GPL-3
+LazyLoad: yes
+Packaged: Fri Sep 10 17:02:53 2010; chen
