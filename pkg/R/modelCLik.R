@@ -19,9 +19,8 @@ modelCLik<-function(mu=c(0.1, 1), strainX) {
           pp <- (1 - exp(- beta * strainX$DNA)) ^ theta + delta
           
           ##log liklihood equation
-          log.lik<- sum(strainX$positive * log(pp) + 
-                        (strainX$trials - strainX$positive) *
-                        log(1 + 2*delta - pp))
+          log.lik <- with(strainX, sum(trials*proportion * log(pp) + 
+                          trials*(1-proportion) * log(1 + 2*delta - pp)))
           
           return(log.lik)
         }

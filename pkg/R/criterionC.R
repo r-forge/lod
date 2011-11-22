@@ -37,13 +37,13 @@ criterionC<-function(strainX, type=c("AIC", "BIC", "AICc")){
 	type <- match.arg(type)						
 	switch(type,			
 			AIC = {  
-				crit<-4-2*L
+				crit <- 4 - 2*L
 			},
 			BIC = { 
-				crit<--2*L+2*log(nrow(strainX))							
+				crit <- -2*L + 2*log(nrow(strainX))							
 			},
 			AICc = { 
-				crit<-(4-2*L)+12/(nrow(strainX)-3) 
+				crit <- (4-2*L)+12/(nrow(strainX)-3) 
 			}
 	)
 	## placeholder for LODFunc

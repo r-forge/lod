@@ -7,15 +7,21 @@
   Interval for a given probabilty level from binary data.
 }
 \usage{
-selectModel(positive, lod.level, trials, max.range = Inf, type = c("AIC",
-"BIC", "AICc"), A = T, B = T, C = T, L = T, CL = T, G = T, P = T, verbose = F)
-}
+selectModel(data, trials, group=NULL, lod.level=0.95, 
+            max.range=Inf, type=c("AIC", "BIC", "AICc"),
+            A=T, B=T, C=T, L=T, CL=T, G=T, P=T, verbose=F)
 %- maybe also 'usage' for other objects documented here.
+}
 \arguments{
-  \item{positive}{Consists of column vector of the number of positive
-    results at each level of DNA}
+  \item{data}{Data frame with 2 columns. 1st column is covariate
+(e.g. analyte concentration, copies per reaction), 2nd column is number of positive results.}
+  \item{trials}{Number of trials used at each concentration level. If it
+  is a single number, it is replicated for each concentration level.}
+\item{group}{If non-NULL, a vector of length nrow(data) for group ID's.
+     This is useful when we want to fit multiple sets of LOD curves together,
+     treating the groups/sets as random effects (specifically, as random intercept
+     on Systematic Component of the GLMM model).} 
   \item{lod.level}{Consists of a list or vector of the levels the user wishes to see.  }
-  \item{trials}{Enter the numbers of trials used at each level of DNA. If it is a single number, it is replicated for each DNA level.}
   \item{max.range}{Meta parameter which sets the maximum acceptable range for the 95\% CI. }
   \item{type}{Meta parameter that controls which criterion will be used to select the model based on a switch function.  }
   \item{A}{Optional user input which controls which models will be
@@ -43,8 +49,7 @@ selectModel(positive, lod.level, trials, max.range = Inf, type = c("AIC",
 \value{
   A plot showing the fitted curve and estimated LOD. 
 }
-\references{ \url{http://bancs.bdx.com/wiki/LOD}}
-\author{Nick Huso}
+\author{Feiming Chen, Nick Huso}
 \note{  
   
   There are several ways the user can force an error by inputting items
@@ -78,11 +83,9 @@ below. A list of invalid models will also be shown as text.
 }
       
 \examples{
-strain1 <- data.frame(positive = c(0, 7, 9, 10, 10, 10),
-                      DNA = c(0, 2.5, 5, 10, 15, 20))
-                      
-selectModel(strain1, lod.level = c(.05, 0.5, .95), trials = 10, type = "AIC")
-
+strain1 <- data.frame(DNA = c(0, 2.5, 5, 10, 15, 20),
+                      positive = c(0, 7, 9, 10, 10, 10))
+selectModel(strain1, trials = 10, lod.level = c(.05, 0.5, .95), type = "AIC")
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
